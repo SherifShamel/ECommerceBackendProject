@@ -35,6 +35,8 @@ namespace ECommerce.Application.Specifications
                     AddOrderBy(p => p.Id);
                     break;
             }
+
+            ApplyPagination(queryParams.PageSize, queryParams.PageIndex);
         }
 
         public ProductSpecifications(int id) : base(p => p.Id == id)

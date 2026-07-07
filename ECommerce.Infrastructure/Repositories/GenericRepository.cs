@@ -1,4 +1,5 @@
-﻿using ECommerce.Domain.Common;
+﻿using ECommerce.Application.Common;
+using ECommerce.Domain.Common;
 using ECommerce.Domain.Contracts;
 using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +52,12 @@ namespace ECommerce.Infrastructure.Repositories
         {
             var Result = SpecificationEvaluator.CreateQuery<TEntity, TKey>(dbContext.Set<TEntity>(), specifications);
             return await Result.FirstOrDefaultAsync(ct);
+        }
+
+        public async Task<int> GetProductCountWithSpecificationsAsync(ISpecifications<TEntity, TKey> specifications, CancellationToken ct = default)
+        {
+            var Result = SpecificationEvaluator.CreateQuery<TEntity, TKey>(dbContext.Set<TEntity>(), specifications);
+            return await Result.CountAsync(ct);
         }
     }
 }

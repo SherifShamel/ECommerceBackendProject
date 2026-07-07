@@ -18,7 +18,6 @@ namespace ECommerce.Application.Specifications
         }
         #endregion
 
-
         #region Include
         public List<Expression<Func<TEntity, object>>> IncludeExpressions { get; private set; } = [];
 
@@ -38,7 +37,25 @@ namespace ECommerce.Application.Specifications
 
         public Expression<Func<TEntity, object>>? OrderByDesc { get; private set; }
 
+
+
         public void AddOrderByDesc(Expression<Func<TEntity, object>>? orderByDesc) => OrderByDesc = orderByDesc;
+        #endregion
+
+        #region Pagination
+        public int Take { get; private set; }
+
+        public int Skip { get; private set; }
+
+        public bool IsPaginated { get; private set; }
+
+        public void ApplyPagination(int pageSize,int pageIndex)
+        {
+            IsPaginated = true;
+
+            Take = pageSize;
+            Skip = (pageIndex - 1) * pageSize;
+        }
         #endregion
     }
 }
