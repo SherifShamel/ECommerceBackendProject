@@ -2,6 +2,7 @@
 using ECommerce.API.Extentions;
 using ECommerce.Application;
 using ECommerce.Application.Profiles;
+using ECommerce.Application.Services;
 using ECommerce.Domain.Contracts;
 using ECommerce.Infrastructure;
 using ECommerce.Infrastructure.Data;
@@ -25,6 +26,7 @@ namespace ECommerce
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("UrlSettings"));
+            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JWT"));
 
             var app = builder.Build();
             await app.MigrationAndSeed();
