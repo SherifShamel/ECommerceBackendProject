@@ -22,6 +22,7 @@ namespace ECommerce.Application
             services.AddScoped<IIdentityServices, IdentityServices>();
             services.AddScoped<IAuthenticationServices, AuthenticationServices>();
             services.AddScoped<ITokenServices, TokenServices>();
+            services.AddScoped<IOrderServices, OrderServices>();
 
             return services;
         }
